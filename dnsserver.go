@@ -120,9 +120,9 @@ func readDomainName(requestBuffer *bytes.Buffer) (string, error) {
 func writeDomainName(responseBuffer *bytes.Buffer, domainName string) error {
 	labels := strings.Split(domainName, ".")
 
-	for j := 0; j < len(labels); j++ {
-		labelLength := len(labels[j])
-		labelBytes := []byte(labels[j])
+	for _, label := range labels {
+		labelLength := len(label)
+		labelBytes := []byte(label)
 
 		responseBuffer.WriteByte(byte(labelLength))
 		responseBuffer.Write(labelBytes)
