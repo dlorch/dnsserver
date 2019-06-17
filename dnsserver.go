@@ -167,8 +167,8 @@ func handleDNSClient(requestBytes []byte, serverConn *net.UDPConn, clientAddr *n
 	var authorityResourceRecords = make([]DNSResourceRecord, 0)
 	var additionalResourceRecords = make([]DNSResourceRecord, 0)
 
-	for i := 0; i < len(queryResourceRecords); i++ {
-		newAnswerRR, newAuthorityRR, newAdditionalRR := dbLookup(queryResourceRecords[i])
+	for _, queryResourceRecord := range queryResourceRecords {
+		newAnswerRR, newAuthorityRR, newAdditionalRR := dbLookup(queryResourceRecord)
 
 		answerResourceRecords = append(answerResourceRecords, newAnswerRR...) // three dots cause the two lists to be concatenated
 		authorityResourceRecords = append(authorityResourceRecords, newAuthorityRR...)
