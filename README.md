@@ -37,7 +37,7 @@ Concepts
 * Go structs and methods (Go's substitute for object-oriented classes)
 * Goroutines ("concurrency is not parallelism" - Rob Pike)
 * Go slices (Go's dynamic lists)
-* Efficiently writing to and reading from structs
+* Efficiently writing to and reading from structs using binary.Read() and binary.Write() respectively
 * DNS protocol (RFC1035)
 
 Links
