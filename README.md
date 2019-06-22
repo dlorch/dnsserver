@@ -3,6 +3,8 @@ Simple DNS Server implemented in Go
 
 ![Simple DNS Server implemented in Go](https://raw.githubusercontent.com/dlorch/dnsserver/master/dnsserver-go.gif)
 
+Featured on [r/golang](https://www.reddit.com/r/golang/comments/c3n7hl/simple_dns_server_implemented_in_go/).
+
 Run
 ---
 
