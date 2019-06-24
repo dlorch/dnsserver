@@ -59,7 +59,7 @@ type DNSResourceRecord struct {
 	ResourceData       []byte
 }
 
-// Type and Class values for DNSQuerySection
+// Type and Class values for DNSResourceRecord
 const (
 	TypeA                  uint16 = 1 // a host address
 	ClassINET              uint16 = 1 // the Internet
