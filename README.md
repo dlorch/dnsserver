@@ -9,9 +9,10 @@ look up information on behalf of an end-user. See
 
 This project provides a subset of the functionality of an **Authoritative
 DNS Server** as a study project. If you need a production-grade DNS Server in Go,
-have a look at [CoreDNS] instead.
+have a look at [CoreDNS]. For DNS library support, see [Go DNS] or
+[package dnsmessage].
 
-Featured on [r/golang].
+Featured on [r/golang] and [go-nuts].
 
 ![Simple DNS Server implemented in Go](https://raw.githubusercontent.com/dlorch/dnsserver/master/dnsserver-go.gif)
 
@@ -69,7 +70,10 @@ Links
 
 [Authoritative vs. Recursive DNS Servers: What's The Difference]: http://social.dnsmadeeasy.com/blog/authoritative-vs-recursive-dns-servers-whats-the-difference/
 [CoreDNS]: https://coredns.io/
+[Go DNS]: https://github.com/miekg/dns
+[package dnsmessage]: https://godoc.org/golang.org/x/net/dns/dnsmessage
 [r/golang]: https://www.reddit.com/r/golang/comments/c3n7hl/simple_dns_server_implemented_in_go/
+[go-nuts]: https://groups.google.com/d/msgid/golang-nuts/9d6801ae-5725-4152-83cf-33e63219da70%40googlegroups.com
 [DNS Message Compression]: http://www.tcpipguide.com/free/t_DNSNameNotationandMessageCompressionTechnique-2.htm
 [knome]: https://www.reddit.com/r/golang/comments/c3n7hl/simple_dns_server_implemented_in_go/erseh68?utm_source=share&utm_medium=web2x
 [RFC 1035: Domain Names - Implementation and Specification]: https://www.ietf.org/rfc/rfc1035.txt
