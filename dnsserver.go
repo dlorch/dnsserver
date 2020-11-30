@@ -190,7 +190,7 @@ func handleDNSClient(requestBytes []byte, serverConn *net.UDPConn, clientAddr *n
 		NumAdditionals: uint16(len(additionalResourceRecords)),
 	}
 
-	err = binary.Write(responseBuffer, binary.BigEndian, &responseHeader)
+	err = Write(responseBuffer, &responseHeader)
 
 	if err != nil {
 		fmt.Println("Error writing to buffer: ", err.Error())
@@ -203,8 +203,8 @@ func handleDNSClient(requestBytes []byte, serverConn *net.UDPConn, clientAddr *n
 			fmt.Println("Error writing to buffer: ", err.Error())
 		}
 
-		binary.Write(responseBuffer, binary.BigEndian, queryResourceRecord.Type)
-		binary.Write(responseBuffer, binary.BigEndian, queryResourceRecord.Class)
+		Write(responseBuffer, queryResourceRecord.Type)
+		Write(responseBuffer, queryResourceRecord.Class)
 	}
 
 	for _, answerResourceRecord := range answerResourceRecords {
@@ -214,11 +214,11 @@ func handleDNSClient(requestBytes []byte, serverConn *net.UDPConn, clientAddr *n
 			fmt.Println("Error writing to buffer: ", err.Error())
 		}
 
-		binary.Write(responseBuffer, binary.BigEndian, answerResourceRecord.Type)
-		binary.Write(responseBuffer, binary.BigEndian, answerResourceRecord.Class)
-		binary.Write(responseBuffer, binary.BigEndian, answerResourceRecord.TimeToLive)
-		binary.Write(responseBuffer, binary.BigEndian, answerResourceRecord.ResourceDataLength)
-		binary.Write(responseBuffer, binary.BigEndian, answerResourceRecord.ResourceData)
+		Write(responseBuffer, answerResourceRecord.Type)
+		Write(responseBuffer, answerResourceRecord.Class)
+		Write(responseBuffer, answerResourceRecord.TimeToLive)
+		Write(responseBuffer, answerResourceRecord.ResourceDataLength)
+		Write(responseBuffer, answerResourceRecord.ResourceData)
 	}
 
 	for _, authorityResourceRecord := range authorityResourceRecords {
@@ -228,11 +228,11 @@ func handleDNSClient(requestBytes []byte, serverConn *net.UDPConn, clientAddr *n
 			fmt.Println("Error writing to buffer: ", err.Error())
 		}
 
-		binary.Write(responseBuffer, binary.BigEndian, authorityResourceRecord.Type)
-		binary.Write(responseBuffer, binary.BigEndian, authorityResourceRecord.Class)
-		binary.Write(responseBuffer, binary.BigEndian, authorityResourceRecord.TimeToLive)
-		binary.Write(responseBuffer, binary.BigEndian, authorityResourceRecord.ResourceDataLength)
-		binary.Write(responseBuffer, binary.BigEndian, authorityResourceRecord.ResourceData)
+		Write(responseBuffer, authorityResourceRecord.Type)
+		Write(responseBuffer, authorityResourceRecord.Class)
+		Write(responseBuffer, authorityResourceRecord.TimeToLive)
+		Write(responseBuffer, authorityResourceRecord.ResourceDataLength)
+		Write(responseBuffer, authorityResourceRecord.ResourceData)
 	}
 
 	for _, additionalResourceRecord := range additionalResourceRecords {
@@ -242,11 +242,11 @@ func handleDNSClient(requestBytes []byte, serverConn *net.UDPConn, clientAddr *n
 			fmt.Println("Error writing to buffer: ", err.Error())
 		}
 
-		binary.Write(responseBuffer, binary.BigEndian, additionalResourceRecord.Type)
-		binary.Write(responseBuffer, binary.BigEndian, additionalResourceRecord.Class)
-		binary.Write(responseBuffer, binary.BigEndian, additionalResourceRecord.TimeToLive)
-		binary.Write(responseBuffer, binary.BigEndian, additionalResourceRecord.ResourceDataLength)
-		binary.Write(responseBuffer, binary.BigEndian, additionalResourceRecord.ResourceData)
+		Write(responseBuffer, additionalResourceRecord.Type)
+		Write(responseBuffer, additionalResourceRecord.Class)
+		Write(responseBuffer, additionalResourceRecord.TimeToLive)
+		Write(responseBuffer, additionalResourceRecord.ResourceDataLength)
+		Write(responseBuffer, additionalResourceRecord.ResourceData)
 	}
 
 	serverConn.WriteToUDP(responseBuffer.Bytes(), clientAddr)
