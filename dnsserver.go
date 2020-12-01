@@ -271,9 +271,9 @@ func main() {
 
 	defer serverConn.Close()
 
-	requestBytes := make([]byte, UDPMaxMessageSizeBytes)
-
 	for {
+		requestBytes := make([]byte, UDPMaxMessageSizeBytes)
+
 		_, clientAddr, err := serverConn.ReadFromUDP(requestBytes)
 
 		if err != nil {
