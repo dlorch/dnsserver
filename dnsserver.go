@@ -73,17 +73,27 @@ func dbLookup(queryResourceRecord DNSResourceRecord) ([]DNSResourceRecord, []DNS
 	var authorityResourceRecords = make([]DNSResourceRecord, 0)
 	var additionalResourceRecords = make([]DNSResourceRecord, 0)
 
-	if queryResourceRecord.DomainName == "example.com" && queryResourceRecord.Type == TypeA && queryResourceRecord.Class == ClassINET {
-		exampleResourceRecord := DNSResourceRecord{
-			DomainName:         "example.com",
-			Type:               TypeA,
-			Class:              ClassINET,
-			TimeToLive:         31337,
-			ResourceData:       []byte{3, 1, 3, 7}, // ipv4 address
-			ResourceDataLength: 4,
-		}
+	names, err := GetNames()
+	if err != nil {
+		return answerResourceRecords, authorityResourceRecords, additionalResourceRecords
+	}
 
-		answerResourceRecords = append(answerResourceRecords, exampleResourceRecord)
+	if queryResourceRecord.Type != TypeA || queryResourceRecord.Class != ClassINET {
+		return answerResourceRecords, authorityResourceRecords, additionalResourceRecords
+	}
+
+	for _, name := range names {
+		if strings.Contains(queryResourceRecord.DomainName, name.Name) {
+			fmt.Println(queryResourceRecord.DomainName)
+			answerResourceRecords = append(answerResourceRecords, DNSResourceRecord{
+				DomainName:         name.Name,
+				Type:               TypeA,
+				Class:              ClassINET,
+				TimeToLive:         31337,
+				ResourceData:       name.Address, // ipv4 address
+				ResourceDataLength: 4,
+			})
+		}
 	}
 
 	return answerResourceRecords, authorityResourceRecords, additionalResourceRecords
