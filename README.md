@@ -20,7 +20,7 @@ Run
 ---
 
 ```
-$ go run dnsserver.go &
+$ go run . &
 Listening at:  :1053
 
 $ dig example.com @localhost -p 1053
