@@ -84,7 +84,7 @@ func dbLookup(queryResourceRecord DNSResourceRecord) ([]DNSResourceRecord, []DNS
 
 	for _, name := range names {
 		if strings.Contains(queryResourceRecord.DomainName, name.Name) {
-			fmt.Println(queryResourceRecord.DomainName)
+			fmt.Println(queryResourceRecord.DomainName, "resolved to", name.Address)
 			answerResourceRecords = append(answerResourceRecords, DNSResourceRecord{
 				DomainName:         name.Name,
 				Type:               TypeA,
