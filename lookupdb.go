@@ -39,7 +39,7 @@ func GetNames() ([]Name, error) {
 }
 
 func To(models []NameModel) []Name {
-	names := make([]Name, len(models))
+	names := make([]Name, 0, len(models))
 	for _, value := range models {
 		names = append(names, Name{
 			Name:    value.Name,
